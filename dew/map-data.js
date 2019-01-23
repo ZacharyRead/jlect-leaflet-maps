@@ -1,9 +1,9 @@
 var map = L.map('map').setView([37.429741,93.413327], 3);
 
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {//http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
-	maxZoom: 18,
-	attribution: '<a href="http://www.jlect.com">JLect.com</a> | Map &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    maxZoom: 18,
+    attribution: '<a href="http://www.jlect.com">JLect.com</a> | Map &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 }).addTo(map);
 
 
@@ -13,25 +13,25 @@ var geoJson;
 
 geoJson = L.geoJson(
 data,
-	{
-		pointToLayer: function(feature, latlng) {
-			var circleRadius = 7;
-			var popup_content = 'Word: <b>' + feature.properties.data + '</b><br />Region: <b>' + feature.properties.region + '</b><br />Language: <b>' + feature.properties.language + '</b>';
-			if (feature.properties.etymology) {
-				popup_content ='Word: <b>' + feature.properties.data + '</b><br />Region: <b>' + feature.properties.region + '</b><br />Language: <b>' + feature.properties.language + '</b><br><br>Origin: <b>' + feature.properties.etymology + '</b>';
-			}
-			if (feature.properties['marker-size'] == 'small')
-				circleRadius = 4;
-			return new L.CircleMarker(latlng, {
-				radius: circleRadius,
-				fillColor: feature.properties['marker-color'],
-				color: "#000",
-				weight: 1,
-				opacity: 1,
-				fillOpacity: 1
-			}).bindPopup(popup_content);
-		},
-	}
+    {
+        pointToLayer: function(feature, latlng) {
+            var circleRadius = 7;
+            var popup_content = 'Word: <b>' + feature.properties.data + '</b><br />Region: <b>' + feature.properties.region + '</b><br />Language: <b>' + feature.properties.language + '</b>';
+            if (feature.properties.etymology) {
+                popup_content ='Word: <b>' + feature.properties.data + '</b><br />Region: <b>' + feature.properties.region + '</b><br />Language: <b>' + feature.properties.language + '</b><br><br>Origin: <b>' + feature.properties.etymology + '</b>';
+            }
+            if (feature.properties['marker-size'] == 'small')
+                circleRadius = 4;
+            return new L.CircleMarker(latlng, {
+                radius: circleRadius,
+                fillColor: feature.properties['marker-color'],
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 1
+            }).bindPopup(popup_content);
+        },
+    }
 ).addTo(map);
 
 
@@ -39,34 +39,34 @@ data,
 var legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function (map) {
-	var div = L.DomUtil.create('div', 'info legend'),
-		labels = ['<div id="legend-toggle">[collapse]</div>',
-				  '<h2><b>Legend</b></h2>',
-				  '<p>Click on the dots for individual details.</p>',
-				  '<div id="legend-info"><div class="legend-color"><i style="background:#ff0000"></i></div><div class="legend-entry">Proto-Japonic *tuju~tujo</div>',
-				  '<div class="legend-color"><i style="background:#ff8000"></i></div><div class="legend-entry">Proto-Germanic *dawwaz, *dawwą ‎(“dew, moisture”) ← Proto-Indo-European *dʰewh₂- ‎(“smoke, haze”)</div>',
-				  '<div class="legend-color"><i style="background:#0000ff"></i></div><div class="legend-entry">Vulgar Latin *rosāta, Latin rōs | Proto-Slavic *rosa, ← Proto-Indo-European *Hroseh₂</div>',
-				  '<div class="legend-color"><i style="background:#0080ff"></i></div><div class="legend-entry">Proto-Chinese *lok</div>',
-				  '<div class="legend-color"><i style="background:#8080c0"></i></div><div class="legend-entry">Malayo-Polynesian *embun</div>',
-				  '<div class="legend-color"><i style="background:#80ffff"></i></div><div class="legend-entry">Southwest Sabahan *bolobou</div>',
-				  '<div class="legend-color"><i style="background:#ffff00"></i></div><div class="legend-entry">Southwestern Tai *nam khāng</div>',
-				  '<div class="legend-color"><i style="background:#808000"></i></div><div class="legend-entry">Asturian *hor- “drizzle” + *baju “fine” (cf. orpín “drizzle”, *-pin(u) “fine”)</div>',
-				  '<div class="legend-color"><i style="background:#800000"></i></div><div class="legend-entry">Latin serēnus ‎“calm”</div>',
-				  '<div class="legend-color"><i style="background:#ffff80"></i></div><div class="legend-entry">Proto-Celic *wlikton “dew, damp” ← *wliqus “wet”</div>',
-				  '<div class="legend-color"><i style="background:#55aa99"></i></div><div class="legend-entry">Proto-Celic *druktus “dew”</div>',
-				  '<div class="legend-color"><i style="background:#00ff00"></i></div><div class="legend-entry">Hindustani *os</div>',
-				  '<div class="legend-color"><i style="background:#cc0044"></i></div><div class="legend-entry">Finnic *kaste</div>',
-				  '<div class="legend-color"><i style="background:#800080"></i></div><div class="legend-entry">? Persian *šab “night” + *nam “moisture”</div>',
-				  '<div class="legend-color"><i style="background:#ff80ff"></i></div><div class="legend-entry">? Proto-Turkic *Vşig</div>',
-				  '<div class="legend-color"><i style="background:#004040"></i></div><div class="legend-entry">? Persian žâle | Armenian cʿoł | Arabic ṭall ← Proto-Indo-European *ghelǝd- (“ice”)</div>',
-				  '<div class="legend-color"><i style="background:#008000"></i></div><div class="legend-entry">? *šüüdVr-</div>',
-				  '<div class="legend-color"><i style="background:#ff8080"></i></div><div class="legend-entry">? *pVni</div>',
-				  '<div class="legend-color"><i style="background:#808080"></i></div><div class="legend-entry">Other</div></div>',
-				  '<div id="legend-scroll"><div id="legend-scrolldown">[↓]</div>',
-				  '<div id="legend-scrollup">[↑]</div></div>'];
+    var div = L.DomUtil.create('div', 'info legend'),
+        labels = ['<div id="legend-toggle">[collapse]</div>',
+                  '<h2><b>Legend</b></h2>',
+                  '<p>Click on the dots for individual details.</p>',
+                  '<div id="legend-info"><div class="legend-color"><i style="background:#ff0000"></i></div><div class="legend-entry">Proto-Japonic *tuju~tujo</div>',
+                  '<div class="legend-color"><i style="background:#ff8000"></i></div><div class="legend-entry">Proto-Germanic *dawwaz, *dawwą ‎(“dew, moisture”) ← Proto-Indo-European *dʰewh₂- ‎(“smoke, haze”)</div>',
+                  '<div class="legend-color"><i style="background:#0000ff"></i></div><div class="legend-entry">Vulgar Latin *rosāta, Latin rōs | Proto-Slavic *rosa, ← Proto-Indo-European *Hroseh₂</div>',
+                  '<div class="legend-color"><i style="background:#0080ff"></i></div><div class="legend-entry">Proto-Chinese *lok</div>',
+                  '<div class="legend-color"><i style="background:#8080c0"></i></div><div class="legend-entry">Malayo-Polynesian *embun</div>',
+                  '<div class="legend-color"><i style="background:#80ffff"></i></div><div class="legend-entry">Southwest Sabahan *bolobou</div>',
+                  '<div class="legend-color"><i style="background:#ffff00"></i></div><div class="legend-entry">Southwestern Tai *nam khāng</div>',
+                  '<div class="legend-color"><i style="background:#808000"></i></div><div class="legend-entry">Asturian *hor- “drizzle” + *baju “fine” (cf. orpín “drizzle”, *-pin(u) “fine”)</div>',
+                  '<div class="legend-color"><i style="background:#800000"></i></div><div class="legend-entry">Latin serēnus ‎“calm”</div>',
+                  '<div class="legend-color"><i style="background:#ffff80"></i></div><div class="legend-entry">Proto-Celic *wlikton “dew, damp” ← *wliqus “wet”</div>',
+                  '<div class="legend-color"><i style="background:#55aa99"></i></div><div class="legend-entry">Proto-Celic *druktus “dew”</div>',
+                  '<div class="legend-color"><i style="background:#00ff00"></i></div><div class="legend-entry">Hindustani *os</div>',
+                  '<div class="legend-color"><i style="background:#cc0044"></i></div><div class="legend-entry">Finnic *kaste</div>',
+                  '<div class="legend-color"><i style="background:#800080"></i></div><div class="legend-entry">? Persian *šab “night” + *nam “moisture”</div>',
+                  '<div class="legend-color"><i style="background:#ff80ff"></i></div><div class="legend-entry">? Proto-Turkic *Vşig</div>',
+                  '<div class="legend-color"><i style="background:#004040"></i></div><div class="legend-entry">? Persian žâle | Armenian cʿoł | Arabic ṭall ← Proto-Indo-European *ghelǝd- (“ice”)</div>',
+                  '<div class="legend-color"><i style="background:#008000"></i></div><div class="legend-entry">? *šüüdVr-</div>',
+                  '<div class="legend-color"><i style="background:#ff8080"></i></div><div class="legend-entry">? *pVni</div>',
+                  '<div class="legend-color"><i style="background:#808080"></i></div><div class="legend-entry">Other</div></div>',
+                  '<div id="legend-scroll"><div id="legend-scrolldown">[↓]</div>',
+                  '<div id="legend-scrollup">[↑]</div></div>'];
 
-	div.innerHTML = labels.join('');
-	return div;
+    div.innerHTML = labels.join('');
+    return div;
 };
 
 legend.addTo(map);
@@ -77,28 +77,28 @@ var toggle_button = document.getElementById('legend-toggle');
 
 toggle_button.addEventListener('click', function() {
     var legend_div = document.getElementById('legend-info');
-	if (legend_div.style.display && legend_div.style.display == 'none') {
-		legend_div.style.display = 'block';
-		document.getElementById('legend-scroll').style.display = 'block';
-		toggle_button.innerHTML = '[collapse]';
-	} else {
-		legend_div.style.display = 'none';
-		document.getElementById('legend-scroll').style.display = 'none';
-		toggle_button.innerHTML = '[expand]';
-	}
+    if (legend_div.style.display && legend_div.style.display == 'none') {
+        legend_div.style.display = 'block';
+        document.getElementById('legend-scroll').style.display = 'block';
+        toggle_button.innerHTML = '[collapse]';
+    } else {
+        legend_div.style.display = 'none';
+        document.getElementById('legend-scroll').style.display = 'none';
+        toggle_button.innerHTML = '[expand]';
+    }
 }, false);
 
 /* Add handler to disable dragging while interacting with legend */
 // Disable dragging when user's cursor enters the element
 legend.getContainer().addEventListener('mouseover', function () {
-	map.dragging.disable();
-	map.scrollWheelZoom.disable();
+    map.dragging.disable();
+    map.scrollWheelZoom.disable();
 });
 
 // Re-enable dragging when user's cursor leaves the element
 legend.getContainer().addEventListener('mouseout', function () {
-	map.dragging.enable();
-	map.scrollWheelZoom.enable();
+    map.dragging.enable();
+    map.scrollWheelZoom.enable();
 });
 
 /* Handle our scroll buttons */
